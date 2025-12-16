@@ -1,4 +1,4 @@
-const targetDate = new Date("2025-01-08 00:00:00"); // 🔥 ĐỔI NGÀY Ở ĐÂY
+const targetDate = new Date("2026-01-08 00:00:00"); // 🔥 ĐỔI NGÀY Ở ĐÂY
 
 const timeEl = document.getElementById("time");
 const notice = document.getElementById("notice");
@@ -35,4 +35,5 @@ btn.onclick = () => {
     sessionStorage.setItem("allowed","yes");
     window.location.href = "main.html";
 };
+
 
