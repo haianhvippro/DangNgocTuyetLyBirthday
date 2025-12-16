@@ -1,0 +1,115 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+
+body{
+    width:100vw;height:100vh;overflow:hidden;
+    background:radial-gradient(circle at bottom,#0b1d3a,#000);
+    color:white;
+}
+
+/* CANVAS */
+canvas{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* ENVELOPE */
+.envelope-box{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:320px;height:220px;
+    z-index:10;
+}
+.envelope{position:absolute;inset:0;cursor:pointer}
+
+@keyframes shake{
+    0%{transform:translate(0)}
+    25%{transform:translate(-2px,1px)}
+    50%{transform:translate(2px,-1px)}
+    75%{transform:translate(-1px,2px)}
+    100%{transform:translate(0)}
+}
+.envelope.shake{animation:shake 3s infinite}
+
+.envelope-back{
+    position:absolute;inset:0;
+    background:#f6c1d1;border-radius:18px;
+}
+.envelope-front{
+    position:absolute;inset:0;
+    background:#f3a6c0;
+    clip-path:polygon(0 0,100% 0,50% 55%);
+    border-radius:18px;
+    z-index:3;
+}
+.envelope-flap{
+    position:absolute;top:0;width:100%;height:55%;
+    background:#ff7eb3;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top;
+    transition:1.2s;
+    z-index:4;
+}
+.envelope.open .envelope-flap{transform:rotateX(180deg)}
+.envelope.drop{animation:drop 1.3s forwards}
+@keyframes drop{to{transform:translateY(320px);opacity:0}}
+
+/* LETTER */
+.hidden{display:none}
+.letter{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%) translateY(120px);
+    width:85%;max-width:420px;
+    background:white;color:#333;
+    padding:28px;border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,.4);
+    z-index:20;
+}
+@keyframes letterUp{
+    to{transform:translate(-50%,-50%) translateY(0)}
+}
+.letter h2{color:#ff5fa2;margin-bottom:15px}
+#typing{line-height:1.7;font-size:16px}
+
+/* PHOTOS */
+.photo{
+    position:absolute;width:180px;
+    border-radius:37px;
+    box-shadow:0 0 25px rgba(255,255,255,.5);
+    animation:orbit 18s ease-in-out infinite, spin 10s linear infinite;
+    cursor:pointer;z-index:5;
+}
+@keyframes orbit{
+    0%{transform:translate(0)}
+    25%{transform:translate(30px,-25px)}
+    50%{transform:translate(-30px,25px)}
+    75%{transform:translate(25px,30px)}
+    100%{transform:translate(0)}
+}
+@keyframes spin{
+    from{rotate:-2deg}
+    to{rotate:2deg}
+}
+
+/* VIEWER */
+#viewer{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;justify-content:center;align-items:center;
+    z-index:30;
+}
+#viewer img{max-width:90%;max-height:90%;border-radius:20px}
+
+/* HEART EFFECT */
+@keyframes heartFly{
+    from{transform:translateY(0) scale(1);opacity:1}
+    to{transform:translateY(-120vh) scale(1.8);opacity:0}
+}
+@keyframes heartPop{
+    from{transform:translate(-50%,-50%) scale(0);opacity:0}
+    to{transform:translate(-50%,-50%) scale(1.4);opacity:1}
+}
