@@ -35,5 +35,3 @@ btn.onclick = () => {
     sessionStorage.setItem("allowed","yes");
     window.location.href = "main.html";
 };
-
-
